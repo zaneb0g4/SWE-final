@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        .button-container button {
+            padding: 20px 40px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upcoming Athletic Events</h1>
+    <div class="button-container">
+        <button>This week</button>
+        <button>Next week</button>
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector('.button-container button:nth-child(1)').addEventListener('click', function() {
+        window.location.href = 'currentweek';
+    });
+    document.querySelector('.button-container button:nth-child(2)').addEventListener('click', function() {
+        window.location.href = 'nextweek';
+    });
+</script>
