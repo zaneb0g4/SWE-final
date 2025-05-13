@@ -1,0 +1,22 @@
+<script>
+    const apiKey = 'AIzaSyAuLBsL-itIVy40nnZYTaI71iknYUHHG4w';
+    const calendarId = 'j5v109sg8ejag3bar9sip0qjj0mera1b@import.calendar.google.com';
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}`;
+  
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const events = data.items;
+        const container = document.getElementById("events");
+        events.forEach(event => {
+          const div = document.createElement("div");
+          div.textContent = `${event.summary} — ${event.start.dateTime || event.start.date}`;
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+      console.error('Error fetching calendar events:', error);
+      });
+  </script>
+  
+  <div id="events"></div>
