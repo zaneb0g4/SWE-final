@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events This Week</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                  url('https://images.unsplash.com/photo-1602632005014-843e8de3d7fa') no-repeat center center/cover;
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      color: #00ffcc;
+      text-shadow: 2px 2px 5px #000;
+      margin-bottom: 30px;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .day-column {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .day-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #00ffcc;
+    }
+
+    .sub-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .sub-box:hover {
+      transform: scale(1.03);
+    }
+
+    .away {
+      background-color: rgba(255, 69, 0, 0.7); /* like your red-orange away */
+    }
+
+    .sport {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .time {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Events This Week</h1>
+  <div class="week-grid">
+
+    <div class="day-column">
+      <div class="day-title">Wednesday, February 26</div>
+      <div class="sub-box away">
+        <div class="sport">Track and Field</div>
+        <div class="time">2:00pm @ Chabot College</div>
+      </div>
+      <div class="sub-box">
+        <div class="sport">Baseball</div>
+        <div class="time">3:30pm vs Bentley</div>
+      </div>
+      <div class="sub-box away">
+        <div class="sport">Golf</div>
+        <div class="time">3:30pm @ Acalanes</div>
+      </div>
+      <div class="sub-box">
+        <div class="sport">Tennis</div>
+        <div class="time">3:30pm vs Quarry Lane</div>
+      </div>
+      <div class="sub-box">
+        <div class="sport">Lacrosse</div>
+        <div class="time">3:30pm vs Convent of the Sacred Heart</div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-title">Thursday, February 27</div>
+      <div class="sub-box">
+        <div class="sport">Golf</div>
+        <div class="time">3:00pm vs Las Lomas</div>
+      </div>
+      <div class="sub-box away">
+        <div class="sport">Swimming</div>
+        <div class="time">3:30pm @ Mills College</div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-title">Friday, February 28</div>
+      <div class="sub-box">
+        <div class="sport">Baseball</div>
+        <div class="time">3:30pm vs Drew</div>
+      </div>
+      <div class="sub-box away">
+        <div class="sport">Tennis</div>
+        <div class="time">3:30pm @ Urban</div>
+      </div>
+      <div class="sub-box away">
+        <div class="sport">Lacrosse</div>
+        <div class="time">3:30pm @ Bentley</div>
+      </div>
+    </div>
+
+    <div class="day-column">
+      <div class="day-title">Saturday, March 1</div>
+      <div class="sub-box away">
+        <div class="sport">Track and Field</div>
+        <div class="time">8:00am @ Amador Valley High</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

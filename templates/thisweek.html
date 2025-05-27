@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events This Week</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                  url('https://images.unsplash.com/photo-1602632005014-843e8de3d7fa') no-repeat center center/cover;
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      color: #ff8c00;
+      text-shadow: 2px 2px 5px #000;
+      margin-bottom: 30px;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .day-column {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .day-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ff8c00;
+    }
+
+    .sub-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .sub-box:hover {
+      transform: scale(1.03);
+    }
+
+    .away {
+      background-color: rgba(70, 70, 70, 0.85);
+    }
+
+    .home {
+      background-color: rgba(255, 140, 0, 0.7);
+    }
+
+    .sport {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .time {
+      font-size: 1rem;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .nav-button {
+      background-color: #ff8c00;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #e67600;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Events This Week</h1>
+  <div class="week-grid" id="weekGrid"></div>
+  <div class="button-container">
+  <a href="home" class="nav-button">Home</a>
+  <a href="nextweek" class="nav-button">Next Week</a></div>
+
+    <script>
+      const apiKey = 'AIzaSyDcGt8ew0F3nu9joJjWBrGvctazcE5hBio';
+      const calendarId = 'j5v109sg8ejag3bar9sip0qjj0mera1b@import.calendar.google.com';
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&singleEvents=true&orderBy=startTime`;
+
+      function formatDate(dateStr) {
+        const options = { weekday: 'long', month: 'long', day: 'numeric' };
+        return new Date(dateStr).toLocaleDateString(undefined, options);
+      }
+
+      function formatTime(dateStr) {
+        const options = { hour: 'numeric', minute: '2-digit' };
+        return new Date(dateStr).toLocaleTimeString(undefined, options);
+      }
+
+      function getWeekRange() {
+        const now = new Date();
+        const dayOfWeek = now.getDay();
+
+        const start = new Date(now);
+        start.setDate(now.getDate() - dayOfWeek - 42);
+        start.setHours(0, 0, 0, 0);
+
+        const end = new Date(start);
+        end.setDate(start.getDate() + 6);
+        end.setHours(23, 59, 59, 999);
+
+        return { start, end };
+      }
+
+      function isThisWeek(dateStr, range) {
+        const d = new Date(dateStr);
+        return d >= range.start && d <= range.end;
+      }
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const events = data.items;
+          const range = getWeekRange();
+          const groupedEvents = {};
+
+          events.forEach(event => {
+            const startStr = event.start.dateTime || event.start.date;
+            if (!isThisWeek(startStr, range)) return;
+
+            const day = formatDate(startStr);
+            if (!groupedEvents[day]) groupedEvents[day] = [];
+
+            groupedEvents[day].push({
+              title: event.summary,
+              time: event.start.dateTime ? formatTime(event.start.dateTime) : "All Day"
+            });
+          });
+
+          const weekGrid = document.getElementById("weekGrid");
+          for (const [day, events] of Object.entries(groupedEvents)) {
+            const column = document.createElement("div");
+            column.className = "day-column";
+
+            const title = document.createElement("div");
+            title.className = "day-title";
+            title.textContent = day;
+            column.appendChild(title);
+
+            events.forEach(event => {
+              const box = document.createElement("div");
+              box.className = "sub-box";
+
+              if (event.title.includes("Away")) {
+                box.classList.add("away");
+              } else if (event.title.includes("Home")) {
+                box.classList.add("home");
+              }
+
+              box.innerHTML = `
+                <div class="sport">${event.title}</div>
+                <div class="time">${event.time}</div>
+              `;
+              column.appendChild(box);
+            });
+
+            weekGrid.appendChild(column);
+          }
+
+          if (Object.keys(groupedEvents).length === 0) {
+            weekGrid.innerHTML = '<p style="grid-column: 1 / -1; color: #ccc;">No events scheduled this week.</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching calendar events:', error);
+        });
+    </script>
+
+</body>
+</html>

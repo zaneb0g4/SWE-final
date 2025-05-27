@@ -1,0 +1,64 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1602632005014-843e8de3d7fa') no-repeat center center/cover;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Header */
+header {
+    padding-top: 60px;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00ffcc;
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* Buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 40px 0;
+}
+
+.button-container button {
+    padding: 20px 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #ff3131;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.button-container button:hover {
+    transform: scale(1.05);
+    background-color: #ff6f61;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+}

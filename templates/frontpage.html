@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Web Page</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             display: flex;
@@ -26,9 +27,58 @@
             font-size: 20px;
             cursor: pointer;
         }
+        body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1602632005014-843e8de3d7fa') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #ff8c00;
+    text-shadow: 2px 2px 5px #000;
+    margin-bottom: 40px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.button-container button {
+    padding: 30px 70px;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.button-container button:hover {
+    transform: scale(1.08);
+    background-color: #ff6f61;
+}
     </style>
 </head>
 <body>
+    <img src="https://bbk12e1-cdn.myschoolcdn.com/ftpimages/320/link/large_link3919833_141248.png" 
+     alt="Team Logo" 
+     style="max-width: 300px; height: auto; margin-bottom: 20px;">
     <h1>Upcoming Athletic Events</h1>
     <div class="button-container">
         <button>This week</button>
@@ -38,7 +88,7 @@
 </html>
 <script>
     document.querySelector('.button-container button:nth-child(1)').addEventListener('click', function() {
-        window.location.href = 'weekdisplay';
+        window.location.href = 'thisweek';
     });
     document.querySelector('.button-container button:nth-child(2)').addEventListener('click', function() {
         window.location.href = 'nextweek';

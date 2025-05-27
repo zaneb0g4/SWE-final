@@ -23,14 +23,18 @@ def create():
     except Exception as e:
         return f"Error: {str(e)}", 500
 
-@app.route("/")
-def hello_world():
+@app.route("/home")
+def home():
     return  render_template("frontpage.html")
 
 
-@app.route("/weekdisplay")
-def weekdisplay():
-    return render_template("weekdisplay.html")
+@app.route("/thisweek")
+def thisweek():
+    return render_template("thisweek.html")
+
+@app.route("/nextweek")
+def nextweek():
+    return render_template("nextweek.html")
 
 
 if __name__ == '__main__':
