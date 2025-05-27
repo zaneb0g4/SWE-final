@@ -22,9 +22,11 @@ def create():
         return redirect(url_for('home'))
     except Exception as e:
         return f"Error: {str(e)}", 500
-
-@app.route("/home")
+@app.route("/")
 def home():
+    return  render_template("frontpage.html")
+@app.route("/home2")
+def home2():
     return  render_template("frontpage.html")
 
 

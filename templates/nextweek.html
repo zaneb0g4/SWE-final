@@ -109,7 +109,7 @@
   <h1>Events Next Week</h1>
   <div class="week-grid" id="weekGrid"></div>
   <div class="button-container">
-  <a href="home" class="nav-button">Home</a>
+  <a href="/" class="nav-button">Home</a>
   <a href="thisweek" class="nav-button">This Week</a></div>
 
     <script>
@@ -132,7 +132,7 @@
         const dayOfWeek = now.getDay();
 
         const start = new Date(now);
-        start.setDate(now.getDate() - dayOfWeek - 35);
+        start.setDate(now.getDate() - dayOfWeek + 7);
         start.setHours(0, 0, 0, 0);
 
         const end = new Date(start);
